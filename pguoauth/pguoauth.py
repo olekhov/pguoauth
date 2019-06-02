@@ -1,4 +1,4 @@
-#!env pyton3
+#!env pyton3.7
 
 import requests
 import logging

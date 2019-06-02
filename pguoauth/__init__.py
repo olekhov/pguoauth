@@ -1,1 +1,1 @@
-import pguoauth
+from .pguoauth import PGUAuthenticator
