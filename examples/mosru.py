@@ -87,7 +87,7 @@ callback_cookies={
         'oauth_az':r_ae.cookies['oauth_az'],
         'origin': r_ae.cookies['origin']}
 
-
+#print(code)
 r_callback = ps.get(code, allow_redirects=False, 
         cookies=callback_cookies,
         headers={'referer':'https://esia.gosuslugi.ru/'})

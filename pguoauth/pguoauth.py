@@ -11,8 +11,6 @@ class PGUAuthenticator:
         self._ps = requests.Session()
         self._cfg = cfg
         self._ps.headers['User-Agent'] = self._cfg["UserAgent"]
-        self.Ltpatoken2 = ""
-        self.Authenticated = False
         pass
     
 
@@ -23,16 +21,11 @@ class PGUAuthenticator:
     вид: https://esia.gosuslugi.ru/aas/oauth2/ac? client_id=xx & client_secret= xx ..
     & response_type=code
 
-    req - куки, полученные от системы, запрашивающей аутентификацию
-    Примерные значения:
-    _idp_authn_lc_key: 71229dcf-0202-483a-8621-b02098dfec05
-    idp_id: ddf2a27da6eaf5e15c3bd0c57f23097d
-    oauth_id: xxx
-    SCS: rg5xBKgH02x...
-    JSESSIONID: B9A78A899ED04EA067BE01C997370097
-    RelayState: guid
-    command: base64.base64.base64
-    На вход необходимо передать словарь с этими данными 
+    referer: куда должно вернуться после аутентификации
+
+    возвращает: url для вызова на подсистеме для завершения аутентификации
+    имеет вид ...?code = xxx
+    зависит от вызывающей подсистемы
     """
     def AuthenticateByEmail(self,url,referer):
         r_ac = self._ps.get(url,allow_redirects=False, 
@@ -157,5 +150,4 @@ class PGUAuthenticator:
         #self.Authenticated = self.Ltpatoken2 != ""
 
         return r_acfinish.headers['location']
-
         
